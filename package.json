@@ -2,8 +2,8 @@
   "name": "angular2-odata",
   "version": "0.0.1",
   "description": "OData service for Angular2",
-  "main": "build/odata.js",
-  "typings":" ./build/odata.d.ts",
+  "main": "odata.js",
+  "typings":"odata.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc"

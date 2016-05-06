@@ -3,7 +3,6 @@
     "module": "commonjs",
     "target": "es6",
     "noImplicitAny": false,
-    "outDir": "build",
     "rootDir": ".",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -14,12 +13,6 @@
   "files": [
     "odata.ts"
   ],
-  // "exclude": [
-  //   //"typings/main.d.ts",
-  //   //"typings/main",
-  //   "node_modules",
-  //   "build"
-  // ],
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": {
