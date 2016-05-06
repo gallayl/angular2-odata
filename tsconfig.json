@@ -4,6 +4,7 @@
     "target": "es6",
     "noImplicitAny": false,
     "rootDir": ".",
+    "outDir": "./build",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,7 +12,10 @@
     "declaration": true
   },
   "files": [
-    "odata.ts"
+    "odata.ts",
+    "odataconfig.ts",
+    "odataquery.ts",
+    "odataservicefactory.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
