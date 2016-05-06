@@ -10,11 +10,9 @@ class ODataService {
     get TypeName() {
         return this._typeName;
     }
-    Get(typeUrl, key) {
-        return this.http.get(this.config.baseUrl + "/" + typeUrl + "('" + key + "')")
-            .map((r, i) => {
-            return this.extractSingleData(r, i, typeUrl);
-        })
+    Get(key) {
+        return this.http.get(this.config.baseUrl + "/" + this.TypeName + "('" + key + "')")
+            .map(this.extractSingleData)
             .catch((err, caught) => {
             this.config.handleError && this.config.handleError(err, caught);
             return rx_1.Observable.throw(err);
@@ -35,7 +33,7 @@ class ODataService {
     Query() {
         return new odataquery_1.ODataQuery(this.TypeName, this.config, this.http);
     }
-    extractSingleData(res, i, typeName) {
+    extractSingleData(res) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
