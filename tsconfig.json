@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": false,
+    "outDir": "build",
+    "rootDir": ".",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "files": [
+    "odata.ts"
+  ],
+  // "exclude": [
+  //   //"typings/main.d.ts",
+  //   //"typings/main",
+  //   "node_modules",
+  //   "build"
+  // ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
