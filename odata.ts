@@ -62,6 +62,6 @@ export class ODataService<T>{
     }
     
     private getEntityUri(entityKey:string){
-        return this.config.baseUrl + "/"+this.TypeName+"('"+entityKey+"')")
+        return this.config.baseUrl + "/"+this.TypeName+"('"+entityKey+"')";
     }
 }
