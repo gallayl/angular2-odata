@@ -10,11 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('angular2/core');
 let ODataConfiguration = class ODataConfiguration {
+    constructor(baseUrl, errorCallback) {
+        this.baseUrl = baseUrl;
+        this.handleError = errorCallback;
+    }
     handleError(err, caught) { }
 };
 ODataConfiguration = __decorate([
     core_1.Injectable(), 
-    __metadata('design:paramtypes', [])
+    __metadata('design:paramtypes', [String, Function])
 ], ODataConfiguration);
 exports.ODataConfiguration = ODataConfiguration;
 //# sourceMappingURL=odataconfig.js.map

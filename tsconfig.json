@@ -12,10 +12,7 @@
     "declaration": true
   },
   "files": [
-    "odata.ts",
-    "odataconfig.ts",
-    "odataquery.ts",
-    "odataservicefactory.ts"
+    "index.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

@@ -12,19 +12,18 @@ const core_1 = require('angular2/core');
 const http_1 = require('angular2/http');
 const odata_1 = require("./odata");
 const odataconfig_1 = require("./odataconfig");
-let ODataServiceFatory = class ODataServiceFatory {
+let ODataServiceFactory = class ODataServiceFactory {
     constructor(http, config) {
         this.http = http;
         this.config = config;
-        var t = [0, 1, 2, 3, 4];
     }
     CreateService(typeName, handleError) {
         return new odata_1.ODataService(typeName, this.http, this.config);
     }
 };
-ODataServiceFatory = __decorate([
+ODataServiceFactory = __decorate([
     core_1.Injectable(), 
     __metadata('design:paramtypes', [http_1.Http, odataconfig_1.ODataConfiguration])
-], ODataServiceFatory);
-exports.ODataServiceFatory = ODataServiceFatory;
+], ODataServiceFactory);
+exports.ODataServiceFactory = ODataServiceFactory;
 //# sourceMappingURL=odataservicefactory.js.map
