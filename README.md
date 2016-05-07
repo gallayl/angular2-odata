@@ -1,7 +1,12 @@
 # angular2-odata
+The project is in an early and untested stage at the moment.
+The goal is to create a fluent API for querying, creating, updating and deleting OData resources in Angular2.
 OData service for Angular
 
 ##Usage example:
+Get the package from NPM:
+npm install angular2-odata
+
 ```
 import { ODataConfiguration, ODataServiceFactory } from "angular2-odata";
 import { bootstrap } from "angular2/platform/browser";
@@ -19,18 +24,16 @@ bootstrap(app,[
 ]
 
 //An example model interface
-interface INotification extends IHasType {
+interface INotification {
     Id: number;
     CommentId: number;
-    Comment: Comment;
-    FromHandle: string;
+    Comment: IComment;
+    FromId: number;
     From: IResource;
     Priority: number;
     SendDate: Date;
     IsArchived: boolean;
     Text: string;
-    Instances:Array<INotificationInstance>
-    TempOldId?: number;
 }
 
 //An example component
