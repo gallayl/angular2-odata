@@ -1,9 +1,9 @@
-import { URLSearchParams, Http, Response } from 'angular2/http';
+import { URLSearchParams, Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable, Operator } from 'rxjs/rx';
 import { ODataConfiguration } from "./odataconfig";
 import { ODataQuery } from "./odataquery";
 
-export class ODataService<T>{
+export class ODataService<T> {
     
     constructor(private _typeName:string, private http:Http, private config:ODataConfiguration) { }
 
@@ -22,7 +22,7 @@ export class ODataService<T>{
     
     public PostAction(key:string, actionName:string, postdata:any){
         let body = JSON.stringify(postdata);
-        return this.handleResponse(this.http.post(this.getEntityUri(key)+"/"+actionName,body));
+        return this.handleResponse(this.http.post(this.getEntityUri(key)+"/"+actionName,body, this.config.requestOptions));
     }
     
     public Patch(entity:T, key:string):Observable<T>{
@@ -61,7 +61,16 @@ export class ODataService<T>{
         return entity || {};
     }
     
+    private escapeKey(){
+        
+    }
+    
     private getEntityUri(entityKey:string){
-        return this.config.baseUrl + "/"+this.TypeName+"('"+entityKey+"')";
+        //ToDo: Fix string based keys
+        if ( !parseInt(entityKey) ){
+            return this.config.baseUrl + "/"+this.TypeName+"('"+entityKey+"')";
+        }
+        
+        return this.config.baseUrl + "/"+this.TypeName+"("+entityKey+")";
     }
 }

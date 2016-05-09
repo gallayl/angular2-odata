@@ -19,7 +19,7 @@ class ODataService {
     }
     PostAction(key, actionName, postdata) {
         let body = JSON.stringify(postdata);
-        return this.handleResponse(this.http.post(this.getEntityUri(key) + "/" + actionName, body));
+        return this.handleResponse(this.http.post(this.getEntityUri(key) + "/" + actionName, body, this.config.requestOptions));
     }
     Patch(entity, key) {
         let body = JSON.stringify(entity);
@@ -50,8 +50,14 @@ class ODataService {
         let entity = body;
         return entity || {};
     }
+    escapeKey() {
+    }
     getEntityUri(entityKey) {
-        return this.config.baseUrl + "/" + this.TypeName + "('" + entityKey + "')";
+        //ToDo: Fix string based keys
+        if (!parseInt(entityKey)) {
+            return this.config.baseUrl + "/" + this.TypeName + "('" + entityKey + "')";
+        }
+        return this.config.baseUrl + "/" + this.TypeName + "(" + entityKey + ")";
     }
 }
 exports.ODataService = ODataService;

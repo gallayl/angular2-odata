@@ -17,5 +17,6 @@ export declare class ODataService<T> {
     Query(): ODataQuery<T>;
     private handleResponse(entity);
     private extractData(res);
+    private escapeKey();
     private getEntityUri(entityKey);
 }

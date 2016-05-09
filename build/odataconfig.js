@@ -9,12 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('angular2/core');
+const http_1 = require('angular2/http');
 let ODataConfiguration = class ODataConfiguration {
     constructor() {
         this.baseUrl = window.location.origin + "/odata";
     }
     handleError(err, caught) {
         console.warn("OData error: ", err, caught);
+    }
+    ;
+    get requestOptions() {
+        let headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return new http_1.RequestOptions({ headers: headers });
     }
     ;
 };
