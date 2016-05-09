@@ -10,15 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('angular2/core');
 let ODataConfiguration = class ODataConfiguration {
-    constructor(baseUrl, errorCallback) {
-        this.baseUrl = baseUrl;
-        this.handleError = errorCallback;
+    constructor() {
+        this.baseUrl = window.location.origin + "/odata";
     }
-    handleError(err, caught) { }
+    handleError(err, caught) {
+        console.warn("OData error: ", err, caught);
+    }
+    ;
 };
 ODataConfiguration = __decorate([
     core_1.Injectable(), 
-    __metadata('design:paramtypes', [String, Function])
+    __metadata('design:paramtypes', [])
 ], ODataConfiguration);
 exports.ODataConfiguration = ODataConfiguration;
 //# sourceMappingURL=odataconfig.js.map

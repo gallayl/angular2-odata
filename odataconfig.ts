@@ -2,11 +2,9 @@ import { Injectable } from 'angular2/core';
 
 @Injectable()
 export class ODataConfiguration{
-    baseUrl:string;
-    handleError(err:any, caught:any):void{ }
-
-    constructor(baseUrl:string, errorCallback?:(err:any,caught:any)=>any) {
-        this.baseUrl = baseUrl;
-        this.handleError = errorCallback;
-    }
-}
+    baseUrl:string  = window.location.origin + "/odata";
+    
+    handleError(err:any, caught:any):void{
+        console.warn("OData error: ", err,caught);
+    };
+ }
