@@ -13,9 +13,7 @@ import { bootstrap } from "angular2/platform/browser";
     
 @Injectable()
 class MyODataConfig extends ODataConfiguration{
-    constructor() {
-        super("http://myODataHost/odata",myGlobalErrorHandler));
-    }
+    baseUrl="http://localhost:54872/odata/";
 }
 
 bootstrap(app,[
