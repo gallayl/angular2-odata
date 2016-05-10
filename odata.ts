@@ -12,12 +12,12 @@ export class ODataService<T> {
     }
         
     public Get(key:string):Observable<T>{
-        return this.handleResponse(this.http.get(this.getEntityUri(key)));
+        return this.handleResponse(this.http.get(this.getEntityUri(key),this.config.requestOptions));
     }
     
     public Post(entity:T, key:string):Observable<T>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.post(this.getEntityUri(key),body));
+        return this.handleResponse(this.http.post(this.config.baseUrl + "/"+this.TypeName,body,this.config.requestOptions));
     }
     
     public PostAction(key:string, actionName:string, postdata:any){
@@ -25,18 +25,18 @@ export class ODataService<T> {
         return this.handleResponse(this.http.post(this.getEntityUri(key)+"/"+actionName,body, this.config.requestOptions));
     }
     
-    public Patch(entity:T, key:string):Observable<T>{
+    public Patch(entity:any, key:string):Observable<T>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.patch(this.getEntityUri(key),body));
+        return this.handleResponse(this.http.patch(this.getEntityUri(key),body,this.config.requestOptions));
     }
     
     public Put(entity:T):Observable<T>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.put(this.config.baseUrl + "/"+this.TypeName,body));
+        return this.handleResponse(this.http.put(this.config.baseUrl + "/"+this.TypeName,body,this.config.requestOptions));
     }
     
     public Delete(key:string):Observable<Response>{
-        return this.http.delete(this.getEntityUri(key));
+        return this.http.delete(this.getEntityUri(key),this.config.requestOptions);
     }
     
     public Query():ODataQuery<T>{

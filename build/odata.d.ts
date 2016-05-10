@@ -11,7 +11,7 @@ export declare class ODataService<T> {
     Get(key: string): Observable<T>;
     Post(entity: T, key: string): Observable<T>;
     PostAction(key: string, actionName: string, postdata: any): Observable<any>;
-    Patch(entity: T, key: string): Observable<T>;
+    Patch(entity: any, key: string): Observable<T>;
     Put(entity: T): Observable<T>;
     Delete(key: string): Observable<Response>;
     Query(): ODataQuery<T>;
