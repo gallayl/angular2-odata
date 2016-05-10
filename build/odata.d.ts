@@ -1,4 +1,4 @@
-import { Http } from 'angular2/http';
+import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/rx';
 import { ODataConfiguration } from "./odataconfig";
 import { ODataQuery } from "./odataquery";
@@ -13,7 +13,7 @@ export declare class ODataService<T> {
     PostAction(key: string, actionName: string, postdata: any): Observable<any>;
     Patch(entity: T, key: string): Observable<T>;
     Put(entity: T): Observable<T>;
-    Delete(key: string): Observable<any>;
+    Delete(key: string): Observable<Response>;
     Query(): ODataQuery<T>;
     private handleResponse(entity);
     private extractData(res);

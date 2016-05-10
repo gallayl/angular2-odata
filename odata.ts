@@ -35,8 +35,8 @@ export class ODataService<T> {
         return this.handleResponse(this.http.put(this.config.baseUrl + "/"+this.TypeName,body));
     }
     
-    public Delete(key:string):Observable<any>{
-        return this.handleResponse(this.http.delete(this.getEntityUri(key)));
+    public Delete(key:string):Observable<Response>{
+        return this.http.delete(this.getEntityUri(key));
     }
     
     public Query():ODataQuery<T>{

@@ -30,7 +30,7 @@ class ODataService {
         return this.handleResponse(this.http.put(this.config.baseUrl + "/" + this.TypeName, body));
     }
     Delete(key) {
-        return this.handleResponse(this.http.delete(this.getEntityUri(key)));
+        return this.http.delete(this.getEntityUri(key));
     }
     Query() {
         return new odataquery_1.ODataQuery(this.TypeName, this.config, this.http);
