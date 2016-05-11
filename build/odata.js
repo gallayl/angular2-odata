@@ -13,11 +13,11 @@ class ODataService {
     Get(key) {
         return this.handleResponse(this.http.get(this.getEntityUri(key), this.config.requestOptions));
     }
-    Post(entity, key) {
+    Post(entity) {
         let body = JSON.stringify(entity);
         return this.handleResponse(this.http.post(this.config.baseUrl + "/" + this.TypeName, body, this.config.requestOptions));
     }
-    PostAction(key, actionName, postdata) {
+    CustomAction(key, actionName, postdata) {
         let body = JSON.stringify(postdata);
         return this.handleResponse(this.http.post(this.getEntityUri(key) + "/" + actionName, body, this.config.requestOptions));
     }
@@ -25,9 +25,9 @@ class ODataService {
         let body = JSON.stringify(entity);
         return this.handleResponse(this.http.patch(this.getEntityUri(key), body, this.config.requestOptions));
     }
-    Put(entity) {
+    Put(entity, key) {
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.put(this.config.baseUrl + "/" + this.TypeName, body, this.config.requestOptions));
+        return this.handleResponse(this.http.put(this.getEntityUri(key), body, this.config.requestOptions));
     }
     Delete(key) {
         return this.http.delete(this.getEntityUri(key), this.config.requestOptions);

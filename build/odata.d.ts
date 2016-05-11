@@ -9,10 +9,10 @@ export declare class ODataService<T> {
     constructor(_typeName: string, http: Http, config: ODataConfiguration);
     TypeName: string;
     Get(key: string): Observable<T>;
-    Post(entity: T, key: string): Observable<T>;
-    PostAction(key: string, actionName: string, postdata: any): Observable<any>;
+    Post(entity: T): Observable<T>;
+    CustomAction(key: string, actionName: string, postdata: any): Observable<any>;
     Patch(entity: any, key: string): Observable<T>;
-    Put(entity: T): Observable<T>;
+    Put(entity: T, key: string): Observable<T>;
     Delete(key: string): Observable<Response>;
     Query(): ODataQuery<T>;
     private handleResponse(entity);
