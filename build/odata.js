@@ -23,7 +23,7 @@ class ODataService {
     }
     Patch(entity, key) {
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.patch(this.getEntityUri(key), body, this.config.requestOptions));
+        return this.http.patch(this.getEntityUri(key), body, this.config.requestOptions);
     }
     Put(entity, key) {
         let body = JSON.stringify(entity);

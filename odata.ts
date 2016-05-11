@@ -25,9 +25,9 @@ export class ODataService<T> {
         return this.handleResponse(this.http.post(this.getEntityUri(key)+"/"+actionName,body, this.config.requestOptions));
     }
     
-    public Patch(entity:any, key:string):Observable<T>{
+    public Patch(entity:any, key:string):Observable<Response>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.patch(this.getEntityUri(key),body,this.config.requestOptions));
+        return this.http.patch(this.getEntityUri(key),body,this.config.requestOptions);
     }
     
     public Put(entity:T,  key:string):Observable<T>{
