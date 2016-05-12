@@ -1,4 +1,4 @@
-import { Http } from 'angular2/http';
+import { Http } from '@angular/http';
 import { ODataService } from "./odata";
 import { ODataConfiguration } from "./odataconfig";
 export declare class ODataServiceFactory {

@@ -1,4 +1,4 @@
-import { URLSearchParams, Http, Response, Headers, RequestOptions } from 'angular2/http';
+import { URLSearchParams, Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable, Operator } from 'rxjs/rx';
 import { ODataConfiguration } from "./odataconfig";
 import { ODataQuery } from "./odataquery";

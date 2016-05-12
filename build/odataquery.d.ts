@@ -1,4 +1,4 @@
-import { Http } from 'angular2/http';
+import { Http } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { ODataConfiguration } from "./odataconfig";
 export declare class ODataQuery<T> {

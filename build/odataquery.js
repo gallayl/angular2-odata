@@ -1,5 +1,5 @@
 "use strict";
-const http_1 = require('angular2/http');
+const http_1 = require('@angular/http');
 const rx_1 = require('rxjs/rx');
 class ODataQuery {
     constructor(_typeName, config, http) {

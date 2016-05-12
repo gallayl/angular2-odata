@@ -1,5 +1,5 @@
-import { Injectable } from 'angular2/core';
-import { URLSearchParams, Http, Response } from 'angular2/http';
+import { Injectable } from '@angular/core';
+import { URLSearchParams, Http, Response } from '@angular/http';
 import { Observable, Operator } from 'rxjs/rx';
 import { ODataConfiguration } from "./odataconfig";
 

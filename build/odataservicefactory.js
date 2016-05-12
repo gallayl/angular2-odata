@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('angular2/core');
-const http_1 = require('angular2/http');
+const core_1 = require('@angular/core');
+const http_1 = require('@angular/http');
 const odata_1 = require("./odata");
 const odataconfig_1 = require("./odataconfig");
 let ODataServiceFactory = class ODataServiceFactory {
