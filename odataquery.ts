@@ -12,6 +12,12 @@ export class ODataQuery<T>{
         return this;
     };
     
+    private _select: string;
+    public Select(filter: string): ODataQuery<T> {
+        this._filter = filter;
+        return this;
+    };    
+    
     private _top:number;
     public Top(top: number):ODataQuery<T>{
         this._top = top;
@@ -39,6 +45,7 @@ export class ODataQuery<T>{
     public Exec():Observable<Array<T>>{
         let params = new URLSearchParams();
         this._filter && params.set("$filter", this._filter);
+        this._select && params.set("$select", this._select);
         this._top && params.set("$top", this._top.toString());
         this._skip && params.set("$skip", this._skip.toString());
         this._expand && params.set("$expand", this._expand);
