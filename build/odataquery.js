@@ -12,6 +12,11 @@ class ODataQuery {
         return this;
     }
     ;
+    Select(filter) {
+        this._filter = filter;
+        return this;
+    }
+    ;
     Top(top) {
         this._top = top;
         return this;
@@ -32,6 +37,7 @@ class ODataQuery {
     Exec() {
         let params = new http_1.URLSearchParams();
         this._filter && params.set("$filter", this._filter);
+        this._select && params.set("$select", this._select);
         this._top && params.set("$top", this._top.toString());
         this._skip && params.set("$skip", this._skip.toString());
         this._expand && params.set("$expand", this._expand);

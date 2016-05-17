@@ -8,6 +8,8 @@ export declare class ODataQuery<T> {
     constructor(_typeName: string, config: ODataConfiguration, http: Http);
     private _filter;
     Filter(filter: string): ODataQuery<T>;
+    private _select;
+    Select(filter: string): ODataQuery<T>;
     private _top;
     Top(top: number): ODataQuery<T>;
     private _skip;
