@@ -1,6 +1,7 @@
 "use strict";
 const rx_1 = require('rxjs/rx');
-const odataquery_1 = require("./odataquery");
+const query_1 = require("./query");
+const operation_1 = require("./operation");
 class ODataService {
     constructor(_typeName, http, config) {
         this._typeName = _typeName;
@@ -11,7 +12,7 @@ class ODataService {
         return this._typeName;
     }
     Get(key) {
-        return this.handleResponse(this.http.get(this.getEntityUri(key), this.config.requestOptions));
+        return new operation_1.GetOperation(this._typeName, this.config, this.http, key);
     }
     Post(entity) {
         let body = JSON.stringify(entity);
@@ -33,14 +34,7 @@ class ODataService {
         return this.http.delete(this.getEntityUri(key), this.config.requestOptions);
     }
     Query() {
-        return new odataquery_1.ODataQuery(this.TypeName, this.config, this.http);
-    }
-    handleResponse(entity) {
-        return entity.map(this.extractData)
-            .catch((err, caught) => {
-            this.config.handleError && this.config.handleError(err, caught);
-            return rx_1.Observable.throw(err);
-        });
+        return new query_1.ODataQuery(this.TypeName, this.config, this.http);
     }
     extractData(res) {
         if (res.status < 200 || res.status >= 300) {
@@ -50,14 +44,21 @@ class ODataService {
         let entity = body;
         return entity || {};
     }
-    escapeKey() {
-    }
     getEntityUri(entityKey) {
         //ToDo: Fix string based keys
         if (!parseInt(entityKey)) {
-            return this.config.baseUrl + "/" + this.TypeName + "('" + entityKey + "')";
+            return this.config.baseUrl + "/" + this._typeName + "('" + entityKey + "')";
         }
-        return this.config.baseUrl + "/" + this.TypeName + "(" + entityKey + ")";
+        return this.config.baseUrl + "/" + this._typeName + "(" + entityKey + ")";
+    }
+    handleResponse(entity) {
+        return entity.map(this.extractData)
+            .catch((err, caught) => {
+            this.config.handleError && this.config.handleError(err, caught);
+            return rx_1.Observable.throw(err);
+        });
+    }
+    escapeKey() {
     }
 }
 exports.ODataService = ODataService;

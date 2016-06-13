@@ -10,20 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
-const odata_1 = require("./odata");
-const config_1 = require("./config");
-let ODataServiceFactory = class ODataServiceFactory {
-    constructor(http, config) {
-        this.http = http;
-        this.config = config;
+let ODataConfiguration = class ODataConfiguration {
+    constructor() {
+        this.baseUrl = window.location.origin + "/odata";
     }
-    CreateService(typeName, handleError) {
-        return new odata_1.ODataService(typeName, this.http, this.config);
+    handleError(err, caught) {
+        console.warn("OData error: ", err, caught);
     }
+    ;
+    get requestOptions() {
+        let headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return new http_1.RequestOptions({ headers: headers });
+    }
+    ;
 };
-ODataServiceFactory = __decorate([
+ODataConfiguration = __decorate([
     core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http, config_1.ODataConfiguration])
-], ODataServiceFactory);
-exports.ODataServiceFactory = ODataServiceFactory;
-//# sourceMappingURL=odataservicefactory.js.map
+    __metadata('design:paramtypes', [])
+], ODataConfiguration);
+exports.ODataConfiguration = ODataConfiguration;
+//# sourceMappingURL=config.js.map

@@ -1,4 +1,4 @@
 export { ODataService } from "./odata";
-export { ODataConfiguration } from "./odataconfig";
-export { ODataQuery } from "./odataquery";
+export { ODataConfiguration } from "./config";
+export { ODataQuery } from "./query";
 export { ODataServiceFactory } from "./odataservicefactory";
