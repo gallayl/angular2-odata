@@ -20,6 +20,9 @@ let ODataServiceFactory = class ODataServiceFactory {
     CreateService(typeName, handleError) {
         return new odata_1.ODataService(typeName, this.http, this.config);
     }
+    CreateServiceWithOptions(typeName, config) {
+        return new odata_1.ODataService(typeName, this.http, config);
+    }
 };
 ODataServiceFactory = __decorate([
     core_1.Injectable(), 
