@@ -45,7 +45,7 @@ export class NotyListComponent{
     }
     
     getOneNoty(id:int){
-        this.odata.Get(id)
+        this.odata.Get(id).Select("Id,Text").Expand("From,To").Exec()
         .subscribe(
             singleNoty=>{...},
             error=>{...}
