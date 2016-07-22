@@ -43,15 +43,16 @@ export class ODataQuery<T> extends ODataOperation<T>{
     
     public Exec():Observable<Array<T>>{
         let params = this.getQueryParams();
+        let config = this.config;
         return this.http.get(this.config.baseUrl + "/"+this._typeName+"/", {search: params})
-           .map(this.extractArrayData)
+           .map(res=>this.extractArrayData(res,config))
            .catch((err:any,caught:Observable<Array<T>>)=>{
                this.config.handleError && this.config.handleError(err,caught);
                return Observable.throw(err);
            });
     }
     
-    private extractArrayData(res: Response):Array<T> {
-        return this.config.extractQueryResultData<T>(res);
+    private extractArrayData(res: Response, config:ODataConfiguration):Array<T> {
+        return config.extractQueryResultData<T>(res);
     }
 }

@@ -14,5 +14,5 @@ export declare class ODataQuery<T> extends ODataOperation<T> {
     OrderBy(orderBy: string): ODataQuery<T>;
     private getQueryParams();
     Exec(): Observable<Array<T>>;
-    private extractArrayData(res);
+    private extractArrayData(res, config);
 }

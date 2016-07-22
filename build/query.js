@@ -33,15 +33,16 @@ class ODataQuery extends operation_1.ODataOperation {
     }
     Exec() {
         let params = this.getQueryParams();
+        let config = this.config;
         return this.http.get(this.config.baseUrl + "/" + this._typeName + "/", { search: params })
-            .map(this.extractArrayData)
+            .map(res => this.extractArrayData(res, config))
             .catch((err, caught) => {
             this.config.handleError && this.config.handleError(err, caught);
             return rx_1.Observable.throw(err);
         });
     }
-    extractArrayData(res) {
-        return this.config.extractQueryResultData(res);
+    extractArrayData(res, config) {
+        return config.extractQueryResultData(res);
     }
 }
 exports.ODataQuery = ODataQuery;
