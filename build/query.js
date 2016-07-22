@@ -25,10 +25,10 @@ class ODataQuery extends operation_1.ODataOperation {
     }
     getQueryParams() {
         let params = super.getParams();
-        this._filter && params.set("$filter", this._filter);
-        this._top && params.set("$top", this._top.toString());
-        this._skip && params.set("$skip", this._skip.toString());
-        this._orderBy && params.set("$orderby", this._orderBy);
+        this._filter && params.set(this.config.Keys.Filter, this._filter);
+        this._top && params.set(this.config.Keys.Top, this._top.toString());
+        this._skip && params.set(this.config.Keys.Skip, this._skip.toString());
+        this._orderBy && params.set(this.config.Keys.OrderBy, this._orderBy);
         return params;
     }
     Exec() {

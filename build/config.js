@@ -10,9 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
+class KeyConfigs {
+    constructor() {
+        this.Filter = "$filter";
+        this.Top = "$top";
+        this.Skip = "$skip";
+        this.OrderBy = "$orderby";
+    }
+}
+exports.KeyConfigs = KeyConfigs;
 let ODataConfiguration = class ODataConfiguration {
     constructor() {
         this.baseUrl = window.location.origin + "/odata";
+        this.Keys = new KeyConfigs();
+    }
+    getEntityUri(entityKey, _typeName) {
+        //ToDo: Fix string based keys
+        if (!parseInt(entityKey)) {
+            return this.baseUrl + "/" + _typeName + "('" + entityKey + "')";
+        }
+        return this.baseUrl + "/" + _typeName + "(" + entityKey + ")";
     }
     handleError(err, caught) {
         console.warn("OData error: ", err, caught);

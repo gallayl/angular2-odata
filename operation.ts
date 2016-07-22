@@ -48,12 +48,7 @@ export abstract class ODataOperation<T>{
     
         
     protected getEntityUri(entityKey:string){
-        //ToDo: Fix string based keys
-        if ( !parseInt(entityKey) ){
-            return this.config.baseUrl + "/"+this._typeName+"('"+entityKey+"')";
-        }
-        
-        return this.config.baseUrl + "/"+this._typeName+"("+entityKey+")";
+        return this.config.getEntityUri(entityKey, this._typeName);
     }
     
     protected getRequestOptions():RequestOptions{
