@@ -1,4 +1,4 @@
-import { RequestOptions } from '@angular/http';
+import { RequestOptions, Response } from '@angular/http';
 export declare class KeyConfigs {
     Filter: string;
     Top: string;
@@ -11,4 +11,5 @@ export declare class ODataConfiguration {
     Keys: KeyConfigs;
     handleError(err: any, caught: any): void;
     requestOptions: RequestOptions;
+    extractQueryResultData<T>(res: Response): Array<T>;
 }

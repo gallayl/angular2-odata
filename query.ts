@@ -52,11 +52,6 @@ export class ODataQuery<T> extends ODataOperation<T>{
     }
     
     private extractArrayData(res: Response):Array<T> {
-        if (res.status < 200 || res.status >= 300) {
-            throw new Error('Bad response status: ' + res.status);
-        }
-        let body = res.json();
-        let entities:Array<T> = body.value;
-        return entities;
+        return this.config.extractQueryResultData<T>(res);
     }
 }

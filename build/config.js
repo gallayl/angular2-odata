@@ -40,6 +40,14 @@ let ODataConfiguration = class ODataConfiguration {
         return new http_1.RequestOptions({ headers: headers });
     }
     ;
+    extractQueryResultData(res) {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error('Bad response status: ' + res.status);
+        }
+        let body = res.json();
+        let entities = body.value;
+        return entities;
+    }
 };
 ODataConfiguration = __decorate([
     core_1.Injectable(), 
