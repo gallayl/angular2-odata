@@ -45,11 +45,7 @@ class ODataService {
         return entity || {};
     }
     getEntityUri(entityKey) {
-        //ToDo: Fix string based keys
-        if (!parseInt(entityKey)) {
-            return this.config.baseUrl + "/" + this._typeName + "('" + entityKey + "')";
-        }
-        return this.config.baseUrl + "/" + this._typeName + "(" + entityKey + ")";
+        return this.config.getEntityUri(entityKey, this._typeName);
     }
     handleResponse(entity) {
         return entity.map(this.extractData)
