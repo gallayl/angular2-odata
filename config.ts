@@ -28,9 +28,13 @@ export class ODataConfiguration{
     };
     
     get requestOptions(): RequestOptions{
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        return new RequestOptions({ headers: headers });
+        return new RequestOptions({body: ''});
     };
+
+    get postRequestOptions():RequestOptions{
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        return new RequestOptions({ headers: headers });
+    }
 
     public extractQueryResultData<T>(res: Response):Array<T> {
         if (res.status < 200 || res.status >= 300) {

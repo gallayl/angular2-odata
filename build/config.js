@@ -36,10 +36,13 @@ let ODataConfiguration = class ODataConfiguration {
     }
     ;
     get requestOptions() {
-        let headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        return new http_1.RequestOptions({ headers: headers });
+        return new http_1.RequestOptions({ body: '' });
     }
     ;
+    get postRequestOptions() {
+        let headers = new http_1.Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        return new http_1.RequestOptions({ headers: headers });
+    }
     extractQueryResultData(res) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);

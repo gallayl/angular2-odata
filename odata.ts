@@ -18,7 +18,7 @@ export class ODataService<T> {
     
     public Post(entity:T):Observable<T>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.post(this.config.baseUrl + "/"+this.TypeName,body,this.config.requestOptions));
+        return this.handleResponse(this.http.post(this.config.baseUrl + "/"+this.TypeName,body,this.config.postRequestOptions));
     }
     
     public CustomAction(key:string, actionName:string, postdata:any){
@@ -28,12 +28,12 @@ export class ODataService<T> {
     
     public Patch(entity:any, key:string):Observable<Response>{
         let body = JSON.stringify(entity);
-        return this.http.patch(this.getEntityUri(key),body,this.config.requestOptions);
+        return this.http.patch(this.getEntityUri(key),body,this.config.postRequestOptions);
     }
     
     public Put(entity:T,  key:string):Observable<T>{
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.put(this.getEntityUri(key),body,this.config.requestOptions));
+        return this.handleResponse(this.http.put(this.getEntityUri(key),body,this.config.postRequestOptions));
     }
     
     public Delete(key:string):Observable<Response>{

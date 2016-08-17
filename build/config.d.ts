@@ -11,5 +11,6 @@ export declare class ODataConfiguration {
     Keys: KeyConfigs;
     handleError(err: any, caught: any): void;
     requestOptions: RequestOptions;
+    postRequestOptions: RequestOptions;
     extractQueryResultData<T>(res: Response): Array<T>;
 }
