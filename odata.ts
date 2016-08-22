@@ -44,13 +44,13 @@ export class ODataService<T> {
         return new ODataQuery<T>(this.TypeName, this.config, this.http);
     }
 
-    private extractData(res: Response){
+    private extractData(res: Response) : T{
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
         let body = res.json();
         let entity:T = body;
-        return entity || {};
+        return entity || null;
     }
     
     protected getEntityUri(entityKey:string){

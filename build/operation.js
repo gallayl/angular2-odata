@@ -27,7 +27,7 @@ class ODataOperation {
         }
         let body = res.json();
         let entity = body;
-        return entity || {};
+        return entity || null;
     }
     handleResponse(entity) {
         return entity.map(this.extractData)

@@ -12,7 +12,7 @@ export declare abstract class ODataOperation<T> {
     Select(select: string): this;
     protected getParams(): URLSearchParams;
     private extractData(res);
-    protected handleResponse(entity: Observable<Response>): Observable<any>;
+    protected handleResponse(entity: Observable<Response>): Observable<T>;
     protected getEntityUri(entityKey: string): string;
     protected getRequestOptions(): RequestOptions;
     abstract Exec(...args: any[]): Observable<any>;

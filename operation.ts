@@ -28,13 +28,13 @@ export abstract class ODataOperation<T>{
         return params;
     }
     
-    private extractData(res: Response){
+    private extractData(res: Response):T{
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
         let body = res.json();
         let entity:T = body;
-        return entity || {};
+        return entity || null;
     }
     
     protected handleResponse(entity:Observable<Response>){

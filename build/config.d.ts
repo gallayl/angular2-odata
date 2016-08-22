@@ -10,7 +10,7 @@ export declare class ODataConfiguration {
     getEntityUri(entityKey: string, _typeName: string): string;
     Keys: KeyConfigs;
     handleError(err: any, caught: any): void;
-    requestOptions: RequestOptions;
-    postRequestOptions: RequestOptions;
+    readonly requestOptions: RequestOptions;
+    readonly postRequestOptions: RequestOptions;
     extractQueryResultData<T>(res: Response): Array<T>;
 }

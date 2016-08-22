@@ -42,7 +42,7 @@ class ODataService {
         }
         let body = res.json();
         let entity = body;
-        return entity || {};
+        return entity || null;
     }
     getEntityUri(entityKey) {
         return this.config.getEntityUri(entityKey, this._typeName);

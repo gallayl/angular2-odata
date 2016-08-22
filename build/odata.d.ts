@@ -8,16 +8,16 @@ export declare class ODataService<T> {
     private http;
     private config;
     constructor(_typeName: string, http: Http, config: ODataConfiguration);
-    TypeName: string;
+    readonly TypeName: string;
     Get(key: string): GetOperation<T>;
     Post(entity: T): Observable<T>;
-    CustomAction(key: string, actionName: string, postdata: any): Observable<any>;
+    CustomAction(key: string, actionName: string, postdata: any): Observable<T>;
     Patch(entity: any, key: string): Observable<Response>;
     Put(entity: T, key: string): Observable<T>;
     Delete(key: string): Observable<Response>;
     Query(): ODataQuery<T>;
     private extractData(res);
     protected getEntityUri(entityKey: string): string;
-    protected handleResponse(entity: Observable<Response>): Observable<any>;
+    protected handleResponse(entity: Observable<Response>): Observable<T>;
     private escapeKey();
 }
