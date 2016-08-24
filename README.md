@@ -8,7 +8,7 @@ Get the package from NPM:
 npm install angular2-odata
 
 ```
-import { ODataConfiguration, ODataServiceFactory } from "angular2-odata";
+import { ODataConfiguration, ODataServiceFactory, ODataService } from "angular2-odata";
 import { bootstrap } from "angular2/platform/browser";
     
 @Injectable()
