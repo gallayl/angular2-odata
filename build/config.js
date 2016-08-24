@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
+const query_1 = require("./query");
 class KeyConfigs {
     constructor() {
         this.Filter = "$filter";
@@ -50,6 +51,24 @@ let ODataConfiguration = class ODataConfiguration {
         let body = res.json();
         let entities = body.value;
         return entities;
+    }
+    extractQueryResultDataWidhCount(res) {
+        let r = new query_1.PagedResult();
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error('Bad response status: ' + res.status);
+        }
+        let body = res.json();
+        let entities = body.value;
+        r.data = entities;
+        try {
+            let count = parseInt(body["@odata.count"]) || entities.length;
+            r.count = count;
+        }
+        catch (error) {
+            console.warn("Cannot determine OData entities count. Falling back to collection length...");
+            r.count = entities.length;
+        }
+        return r;
     }
 };
 ODataConfiguration = __decorate([

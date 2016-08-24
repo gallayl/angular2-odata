@@ -1,4 +1,5 @@
 import { RequestOptions, Response } from '@angular/http';
+import { PagedResult } from "./query";
 export declare class KeyConfigs {
     Filter: string;
     Top: string;
@@ -10,7 +11,8 @@ export declare class ODataConfiguration {
     getEntityUri(entityKey: string, _typeName: string): string;
     Keys: KeyConfigs;
     handleError(err: any, caught: any): void;
-    readonly requestOptions: RequestOptions;
-    readonly postRequestOptions: RequestOptions;
-    extractQueryResultData<T>(res: Response): Array<T>;
+    requestOptions: RequestOptions;
+    postRequestOptions: RequestOptions;
+    extractQueryResultData<T>(res: Response): T[];
+    extractQueryResultDataWidhCount<T>(res: Response): PagedResult<T>;
 }

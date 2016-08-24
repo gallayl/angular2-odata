@@ -8,7 +8,7 @@ export declare class ODataService<T> {
     private http;
     private config;
     constructor(_typeName: string, http: Http, config: ODataConfiguration);
-    readonly TypeName: string;
+    TypeName: string;
     Get(key: string): GetOperation<T>;
     Post(entity: T): Observable<T>;
     CustomAction(key: string, actionName: string, postdata: any): Observable<T>;

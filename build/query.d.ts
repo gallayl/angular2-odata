@@ -2,6 +2,10 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import { ODataConfiguration } from "./config";
 import { ODataOperation } from "./operation";
+export declare class PagedResult<T> {
+    data: T[];
+    count: number;
+}
 export declare class ODataQuery<T> extends ODataOperation<T> {
     constructor(_typeName: string, config: ODataConfiguration, http: Http);
     private _filter;
@@ -14,5 +18,7 @@ export declare class ODataQuery<T> extends ODataOperation<T> {
     OrderBy(orderBy: string): ODataQuery<T>;
     private getQueryParams();
     Exec(): Observable<Array<T>>;
+    ExecWithCount(): Observable<PagedResult<T>>;
     private extractArrayData(res, config);
+    private extractArrayDataWithCount(res, config);
 }

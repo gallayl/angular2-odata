@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams, Http, Response } from '@angular/http';
-import { Observable, Operator } from 'rxjs/rx';
+import { Observable, Operator, Subject } from 'rxjs/rx';
 import { ODataConfiguration } from "./config";
 import { ODataOperation } from "./operation";
+
+export class PagedResult<T>{
+    public data: T[];
+    public count: number;
+}
 
 export class ODataQuery<T> extends ODataOperation<T>{
     constructor(_typeName:string, config:ODataConfiguration, http:Http) {
@@ -51,8 +56,26 @@ export class ODataQuery<T> extends ODataOperation<T>{
                return Observable.throw(err);
            });
     }
+
+    public ExecWithCount():Observable<PagedResult<T>>{
+        let params = this.getQueryParams();
+        params.set("$count",'true');    // OData v4 only
+        let config = this.config;
+
+        return this.http.get(this.config.baseUrl + "/"+this._typeName+"/", {search: params})
+            .map(res=>this.extractArrayDataWithCount(res,config))
+            .catch((err:any,caught:Observable<PagedResult<T>>)=>{
+               this.config.handleError && this.config.handleError(err,caught);
+               return Observable.throw(err);
+           });
+
+    }
     
     private extractArrayData(res: Response, config:ODataConfiguration):Array<T> {
         return config.extractQueryResultData<T>(res);
+    }
+
+    private extractArrayDataWithCount(res:Response, config: ODataConfiguration):PagedResult<T>{
+        return config.extractQueryResultDataWidhCount<T>(res);
     }
 }
