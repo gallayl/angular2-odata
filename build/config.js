@@ -52,7 +52,7 @@ let ODataConfiguration = class ODataConfiguration {
         let entities = body.value;
         return entities;
     }
-    extractQueryResultDataWidhCount(res) {
+    extractQueryResultDataWithCount(res) {
         let r = new query_1.PagedResult();
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);

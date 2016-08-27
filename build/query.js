@@ -59,7 +59,7 @@ class ODataQuery extends operation_1.ODataOperation {
         return config.extractQueryResultData(res);
     }
     extractArrayDataWithCount(res, config) {
-        return config.extractQueryResultDataWidhCount(res);
+        return config.extractQueryResultDataWithCount(res);
     }
 }
 exports.ODataQuery = ODataQuery;

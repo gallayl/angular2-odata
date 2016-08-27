@@ -14,5 +14,5 @@ export declare class ODataConfiguration {
     requestOptions: RequestOptions;
     postRequestOptions: RequestOptions;
     extractQueryResultData<T>(res: Response): T[];
-    extractQueryResultDataWidhCount<T>(res: Response): PagedResult<T>;
+    extractQueryResultDataWithCount<T>(res: Response): PagedResult<T>;
 }
