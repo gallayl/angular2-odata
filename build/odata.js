@@ -1,7 +1,7 @@
 "use strict";
 const rx_1 = require('rxjs/rx');
-const query_1 = require("./query");
-const operation_1 = require("./operation");
+const query_1 = require('./query');
+const operation_1 = require('./operation');
 class ODataService {
     constructor(_typeName, http, config) {
         this._typeName = _typeName;
@@ -16,11 +16,11 @@ class ODataService {
     }
     Post(entity) {
         let body = JSON.stringify(entity);
-        return this.handleResponse(this.http.post(this.config.baseUrl + "/" + this.TypeName, body, this.config.postRequestOptions));
+        return this.handleResponse(this.http.post(this.config.baseUrl + '/' + this.TypeName, body, this.config.postRequestOptions));
     }
     CustomAction(key, actionName, postdata) {
         let body = JSON.stringify(postdata);
-        return this.handleResponse(this.http.post(this.getEntityUri(key) + "/" + actionName, body, this.config.requestOptions));
+        return this.handleResponse(this.http.post(this.getEntityUri(key) + '/' + actionName, body, this.config.requestOptions));
     }
     Patch(entity, key) {
         let body = JSON.stringify(entity);
@@ -36,6 +36,17 @@ class ODataService {
     Query() {
         return new query_1.ODataQuery(this.TypeName, this.config, this.http);
     }
+    getEntityUri(entityKey) {
+        return this.config.getEntityUri(entityKey, this._typeName);
+    }
+    handleResponse(entity) {
+        return entity.map(this.extractData)
+            .catch((err, caught) => {
+            if (this.config.handleError)
+                this.config.handleError(err, caught);
+            return rx_1.Observable.throw(err);
+        });
+    }
     extractData(res) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
@@ -43,16 +54,6 @@ class ODataService {
         let body = res.json();
         let entity = body;
         return entity || null;
-    }
-    getEntityUri(entityKey) {
-        return this.config.getEntityUri(entityKey, this._typeName);
-    }
-    handleResponse(entity) {
-        return entity.map(this.extractData)
-            .catch((err, caught) => {
-            this.config.handleError && this.config.handleError(err, caught);
-            return rx_1.Observable.throw(err);
-        });
     }
     escapeKey() {
     }
