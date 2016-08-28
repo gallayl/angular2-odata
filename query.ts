@@ -76,6 +76,6 @@ export class ODataQuery<T> extends ODataOperation<T>{
     }
 
     private extractArrayDataWithCount(res:Response, config: ODataConfiguration):PagedResult<T>{
-        return config.extractQueryResultDataWidhCount<T>(res);
+        return config.extractQueryResultDataWithCount<T>(res);
     }
 }

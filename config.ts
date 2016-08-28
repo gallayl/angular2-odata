@@ -46,7 +46,7 @@ export class ODataConfiguration {
         return entities;
     }
 
-    public extractQueryResultDataWidhCount<T>(res: Response): PagedResult<T> {
+    public extractQueryResultDataWithCount<T>(res: Response): PagedResult<T> {
         let r = new PagedResult<T>();
 
         if (res.status < 200 || res.status >= 300) {
