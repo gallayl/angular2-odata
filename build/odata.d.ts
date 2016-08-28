@@ -1,8 +1,8 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/rx';
-import { ODataConfiguration } from "./config";
-import { ODataQuery } from "./query";
-import { GetOperation } from "./operation";
+import { ODataConfiguration } from './config';
+import { ODataQuery } from './query';
+import { GetOperation } from './operation';
 export declare class ODataService<T> {
     private _typeName;
     private http;
@@ -16,8 +16,8 @@ export declare class ODataService<T> {
     Put(entity: T, key: string): Observable<T>;
     Delete(key: string): Observable<Response>;
     Query(): ODataQuery<T>;
-    private extractData(res);
     protected getEntityUri(entityKey: string): string;
     protected handleResponse(entity: Observable<Response>): Observable<T>;
+    private extractData(res);
     private escapeKey();
 }

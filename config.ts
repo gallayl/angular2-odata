@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Response } from '@angular/http';
-import { PagedResult } from "./query";
+import { PagedResult } from './query';
 
 export class KeyConfigs {
-    public Filter: string = "$filter";
-    public Top: string = "$top";
-    public Skip: string = "$skip";
-    public OrderBy: string = "$orderby";
+    public filter: string = '$filter';
+    public top: string = '$top';
+    public skip: string = '$skip';
+    public orderBy: string = '$orderby';
 }
 
 @Injectable()
 export class ODataConfiguration {
-    baseUrl: string = window.location.origin + "/odata";
+    baseUrl: string = window.location.origin + '/odata';
+
+    public keys: KeyConfigs = new KeyConfigs();
 
     public getEntityUri(entityKey: string, _typeName: string) {
-        //ToDo: Fix string based keys
-        if (!parseInt(entityKey)) {
-            return this.baseUrl + "/" + _typeName + "('" + entityKey + "')";
+        // ToDo: Fix string based keys
+        if (!parseInt(entityKey, 10)) {
+            return this.baseUrl + '/' + _typeName + "('" + entityKey + "')";
         }
 
-        return this.baseUrl + "/" + _typeName + "(" + entityKey + ")";
+        return this.baseUrl + '/' + _typeName + '(' + entityKey + ')';
     }
 
-    public Keys: KeyConfigs = new KeyConfigs();
-
     handleError(err: any, caught: any): void {
-        console.warn("OData error: ", err, caught);
+        console.warn('OData error: ', err, caught);
     };
 
     get requestOptions(): RequestOptions {
@@ -47,7 +47,7 @@ export class ODataConfiguration {
     }
 
     public extractQueryResultDataWithCount<T>(res: Response): PagedResult<T> {
-        let r = new PagedResult<T>();
+        let pagedResult = new PagedResult<T>();
 
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
@@ -55,16 +55,16 @@ export class ODataConfiguration {
         let body = res.json();
         let entities: T[] = body.value;
 
-        r.data = entities;
+        pagedResult.data = entities;
 
         try {
-            let count = parseInt(body["@odata.count"]) || entities.length; 
-            r.count = count;
+            let count = parseInt(body['@odata.count'], 10) || entities.length;
+            pagedResult.count = count;
         } catch (error) {
-            console.warn("Cannot determine OData entities count. Falling back to collection length...");
-            r.count = entities.length;
+            console.warn('Cannot determine OData entities count. Falling back to collection length...');
+            pagedResult.count = entities.length;
         }
-        return r;
 
+        return pagedResult;
     }
 }
