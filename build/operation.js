@@ -17,22 +17,17 @@ class ODataOperation {
     }
     getParams() {
         let params = new http_1.URLSearchParams();
-        this._select && params.set("$select", this._select);
-        this._expand && params.set("$expand", this._expand);
+        if (this._select)
+            params.set('$select', this._select);
+        if (this._expand)
+            params.set('$expand', this._expand);
         return params;
-    }
-    extractData(res) {
-        if (res.status < 200 || res.status >= 300) {
-            throw new Error('Bad response status: ' + res.status);
-        }
-        let body = res.json();
-        let entity = body;
-        return entity || null;
     }
     handleResponse(entity) {
         return entity.map(this.extractData)
             .catch((err, caught) => {
-            this.config.handleError && this.config.handleError(err, caught);
+            if (this.config.handleError)
+                this.config.handleError(err, caught);
             return rx_1.Observable.throw(err);
         });
     }
@@ -43,6 +38,14 @@ class ODataOperation {
         let options = this.config.requestOptions;
         options.search = this.getParams();
         return options;
+    }
+    extractData(res) {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error('Bad response status: ' + res.status);
+        }
+        let body = res.json();
+        let entity = body;
+        return entity || null;
     }
 }
 exports.ODataOperation = ODataOperation;

@@ -10,30 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
-const query_1 = require("./query");
+const query_1 = require('./query');
 class KeyConfigs {
     constructor() {
-        this.Filter = "$filter";
-        this.Top = "$top";
-        this.Skip = "$skip";
-        this.OrderBy = "$orderby";
+        this.filter = '$filter';
+        this.top = '$top';
+        this.skip = '$skip';
+        this.orderBy = '$orderby';
     }
 }
 exports.KeyConfigs = KeyConfigs;
 let ODataConfiguration = class ODataConfiguration {
     constructor() {
-        this.baseUrl = window.location.origin + "/odata";
-        this.Keys = new KeyConfigs();
+        this.baseUrl = window.location.origin + '/odata';
+        this.keys = new KeyConfigs();
     }
     getEntityUri(entityKey, _typeName) {
-        //ToDo: Fix string based keys
-        if (!parseInt(entityKey)) {
-            return this.baseUrl + "/" + _typeName + "('" + entityKey + "')";
+        // ToDo: Fix string based keys
+        if (!parseInt(entityKey, 10)) {
+            return this.baseUrl + '/' + _typeName + "('" + entityKey + "')";
         }
-        return this.baseUrl + "/" + _typeName + "(" + entityKey + ")";
+        return this.baseUrl + '/' + _typeName + '(' + entityKey + ')';
     }
     handleError(err, caught) {
-        console.warn("OData error: ", err, caught);
+        console.warn('OData error: ', err, caught);
     }
     ;
     get requestOptions() {
@@ -52,23 +52,23 @@ let ODataConfiguration = class ODataConfiguration {
         let entities = body.value;
         return entities;
     }
-    extractQueryResultDataWidhCount(res) {
-        let r = new query_1.PagedResult();
+    extractQueryResultDataWithCount(res) {
+        let pagedResult = new query_1.PagedResult();
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
         let body = res.json();
         let entities = body.value;
-        r.data = entities;
+        pagedResult.data = entities;
         try {
-            let count = parseInt(body["@odata.count"]) || entities.length;
-            r.count = count;
+            let count = parseInt(body['@odata.count'], 10) || entities.length;
+            pagedResult.count = count;
         }
         catch (error) {
-            console.warn("Cannot determine OData entities count. Falling back to collection length...");
-            r.count = entities.length;
+            console.warn('Cannot determine OData entities count. Falling back to collection length...');
+            pagedResult.count = entities.length;
         }
-        return r;
+        return pagedResult;
     }
 };
 ODataConfiguration = __decorate([

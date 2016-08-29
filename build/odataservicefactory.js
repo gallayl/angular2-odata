@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
-const odata_1 = require("./odata");
-const config_1 = require("./config");
+const odata_1 = require('./odata');
+const config_1 = require('./config');
 let ODataServiceFactory = class ODataServiceFactory {
     constructor(http, config) {
         this.http = http;
