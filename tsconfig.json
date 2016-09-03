@@ -11,8 +11,11 @@
     "moduleResolution": "node",
     "declaration": true
   },
-  "files": [
-    "index.ts"
+  "exclude": [
+    ".vscode",
+    ".git",
+    "build",
+    "node_modules"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

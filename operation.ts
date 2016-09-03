@@ -11,20 +11,20 @@ export abstract class ODataOperation<T> {
                 protected config: ODataConfiguration,
                 protected http: Http) { }
 
-    public Expand(expand: string) {
-        this._expand = expand;
+    public Expand(expand: string | string[]) {
+        this._expand = this.parseStringOrStringArray(expand);
         return this;
     }
 
-    public Select(select: string) {
-        this._select = select;
+    public Select(select: string | string[]) {
+        this._select = this.parseStringOrStringArray(select);
         return this;
     }
 
     protected getParams(): URLSearchParams {
         let params = new URLSearchParams();
-        if (this._select) params.set('$select', this._select);
-        if (this._expand) params.set('$expand', this._expand);
+        if (this._select && this._select.length > 0) params.set(this.config.keys.select, this._select);
+        if (this._expand && this._expand.length > 0) params.set(this.config.keys.expand, this._expand);
         return params;
     }
 
@@ -47,6 +47,14 @@ export abstract class ODataOperation<T> {
     }
 
     abstract Exec(...args): Observable<any>;
+
+    protected parseStringOrStringArray(input: string | string[]): string {
+        if (input instanceof Array) {
+            return input.join(',');
+        }
+
+        return input as string;
+    }
 
     private extractData(res: Response): T {
         if (res.status < 200 || res.status >= 300) {
