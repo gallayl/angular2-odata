@@ -8,13 +8,14 @@ export declare abstract class ODataOperation<T> {
     private _expand;
     private _select;
     constructor(_typeName: string, config: ODataConfiguration, http: Http);
-    Expand(expand: string): this;
-    Select(select: string): this;
+    Expand(expand: string | string[]): this;
+    Select(select: string | string[]): this;
     protected getParams(): URLSearchParams;
     protected handleResponse(entity: Observable<Response>): Observable<T>;
     protected getEntityUri(entityKey: string): string;
     protected getRequestOptions(): RequestOptions;
     abstract Exec(...args: any[]): Observable<any>;
+    protected parseStringOrStringArray(input: string | string[]): string;
     private extractData(res);
 }
 export declare abstract class OperationWithKey<T> extends ODataOperation<T> {

@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Response } from '@angular/http';
 import { PagedResult } from './query';
+// import { Location } from '@angular/common';
 
 export class KeyConfigs {
     public filter: string = '$filter';
     public top: string = '$top';
     public skip: string = '$skip';
     public orderBy: string = '$orderby';
+    public select: string = '$select';
+    public expand: string = '$expand';
 }
 
 @Injectable()
 export class ODataConfiguration {
-    baseUrl: string = window.location.origin + '/odata';
-
     public keys: KeyConfigs = new KeyConfigs();
+    public baseUrl: string = 'http://localhost/odata';
+
+    // constructor(location?: Location) {
+    //     this.baseUrl = location.path + '/odata';
+    // }
 
     public getEntityUri(entityKey: string, _typeName: string) {
         // ToDo: Fix string based keys

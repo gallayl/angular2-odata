@@ -8,19 +8,19 @@ class ODataOperation {
         this.http = http;
     }
     Expand(expand) {
-        this._expand = expand;
+        this._expand = this.parseStringOrStringArray(expand);
         return this;
     }
     Select(select) {
-        this._select = select;
+        this._select = this.parseStringOrStringArray(select);
         return this;
     }
     getParams() {
         let params = new http_1.URLSearchParams();
-        if (this._select)
-            params.set('$select', this._select);
-        if (this._expand)
-            params.set('$expand', this._expand);
+        if (this._select && this._select.length > 0)
+            params.set(this.config.keys.select, this._select);
+        if (this._expand && this._expand.length > 0)
+            params.set(this.config.keys.expand, this._expand);
         return params;
     }
     handleResponse(entity) {
@@ -38,6 +38,12 @@ class ODataOperation {
         let options = this.config.requestOptions;
         options.search = this.getParams();
         return options;
+    }
+    parseStringOrStringArray(input) {
+        if (input instanceof Array) {
+            return input.join(',');
+        }
+        return input;
     }
     extractData(res) {
         if (res.status < 200 || res.status >= 300) {
