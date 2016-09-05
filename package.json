@@ -1,6 +1,6 @@
 {
   "name": "angular2-odata",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "OData service for Angular2",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
