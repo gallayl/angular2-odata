@@ -11,20 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const http_1 = require('@angular/http');
 const query_1 = require('./query');
+// import { Location } from '@angular/common';
 class KeyConfigs {
     constructor() {
         this.filter = '$filter';
         this.top = '$top';
         this.skip = '$skip';
         this.orderBy = '$orderby';
+        this.select = '$select';
+        this.expand = '$expand';
     }
 }
 exports.KeyConfigs = KeyConfigs;
 let ODataConfiguration = class ODataConfiguration {
     constructor() {
-        this.baseUrl = window.location.origin + '/odata';
         this.keys = new KeyConfigs();
+        this.baseUrl = 'http://localhost/odata';
     }
+    // constructor(location?: Location) {
+    //     this.baseUrl = location.path + '/odata';
+    // }
     getEntityUri(entityKey, _typeName) {
         // ToDo: Fix string based keys
         if (!parseInt(entityKey, 10)) {

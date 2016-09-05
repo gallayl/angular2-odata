@@ -5,10 +5,12 @@ export declare class KeyConfigs {
     top: string;
     skip: string;
     orderBy: string;
+    select: string;
+    expand: string;
 }
 export declare class ODataConfiguration {
-    baseUrl: string;
     keys: KeyConfigs;
+    baseUrl: string;
     getEntityUri(entityKey: string, _typeName: string): string;
     handleError(err: any, caught: any): void;
     requestOptions: RequestOptions;
