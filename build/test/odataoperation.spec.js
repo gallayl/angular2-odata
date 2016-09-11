@@ -1,89 +1,88 @@
-"use strict";
-require('zone.js');
-require('reflect-metadata');
-const chai_1 = require('chai');
-const rx_1 = require('rxjs/rx');
-const common_1 = require('@angular/common');
-const testing_1 = require('@angular/core/testing');
-const testbedHelper_1 = require('./testbedHelper');
-const testing_2 = require('@angular/http/testing');
-const http_1 = require('@angular/http');
-const operation_1 = require('../operation');
-const odataservicefactory_1 = require('../odataservicefactory');
-const config_1 = require('../config');
-class ODataOperationTest extends operation_1.ODataOperation {
-    Exec() {
-        return rx_1.Observable.of(new Array());
-    }
-}
-exports.ODataOperationTest = ODataOperationTest;
-describe('ODataOperation - ', () => {
-    // before(() => TestBedHelper.Init());
-    beforeEach(() => {
-        testbedHelper_1.TestBedHelper.Init().configureTestingModule({
-            providers: [
-                http_1.BaseRequestOptions,
-                testing_2.MockBackend,
-                {
-                    provide: http_1.Http, useFactory: (backend, defaultOptions) => {
-                        return new http_1.Http(backend, defaultOptions);
-                    },
-                    deps: [testing_2.MockBackend, http_1.BaseRequestOptions]
-                },
-                {
-                    provide: common_1.Location, useFactory: () => {
-                        return {
-                            path: 'http://localhost/test'
-                        };
-                    }
-                },
-                config_1.ODataConfiguration,
-                odataservicefactory_1.ODataServiceFactory
-            ],
-            imports: [
-                http_1.HttpModule
-            ]
-        });
-    });
-    it('Expand(string) via injection', testing_1.inject([http_1.Http, config_1.ODataConfiguration], (http, config) => {
-        // Assign
-        let test = new ODataOperationTest('Employees', config, http);
-        // Act
-        test.Expand('x');
-        // Assert
-        chai_1.assert.equal(test['_expand'], 'x');
-    }));
-    it('Expand(string)', () => {
-        // Assign
-        let test = new ODataOperationTest('Employees', null, null);
-        // Act
-        test.Expand('x, y');
-        // Assert
-        chai_1.assert.equal(test['_expand'], 'x, y');
-    });
-    it('Expand(string[])', () => {
-        // Assign
-        let test = new ODataOperationTest('Employees', null, null);
-        // Act
-        test.Expand(['a', 'b']);
-        // Assert
-        chai_1.assert.equal(test['_expand'], 'a,b');
-    });
-    it('Select(string)', () => {
-        // Assign
-        let test = new ODataOperationTest('Employees', null, null);
-        // Act
-        test.Select('x,y,z');
-        // Assert
-        chai_1.assert.equal(test['_select'], 'x,y,z');
-    });
-    it('Select(string[])', () => {
-        // Assign
-        let test = new ODataOperationTest('Employees', null, null);
-        // Act
-        test.Select(['a', 'b']);
-        // Assert
-        chai_1.assert.equal(test['_select'], 'a,b');
-    });
-});
+// require('zone.js');
+// require('core-js/es7/reflect');
+// import { assert } from 'chai';
+// import { Observable, Operator } from 'rxjs/rx';
+// import { Location } from '@angular/common';
+// import { inject, addProviders, TestComponentBuilder, TestBed } from '@angular/core/testing';
+// import { TestBedHelper } from './testbedHelper';
+// import { MockBackend } from '@angular/http/testing';
+// import { BaseRequestOptions, Http, ConnectionBackend, HttpModule } from '@angular/http';
+// import { IEmployee } from './employee';
+// import { ODataOperation } from '../operation';
+// import { ODataServiceFactory } from '../odataservicefactory';
+// import { ODataConfiguration } from '../config';
+// export class ODataOperationTest<IEmployee> extends ODataOperation<IEmployee> {
+//     public Exec(): Observable<Array<IEmployee>> {
+//         return Observable.of(new Array<IEmployee>());
+//     }
+// }
+// describe('ODataOperation - ', () => {
+//     // before(() => TestBedHelper.Init());
+//     beforeEach(() => {
+//         TestBedHelper.Init().configureTestingModule({
+//             providers: [
+//                 BaseRequestOptions,
+//                 MockBackend,
+//                 {
+//                     provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+//                         return new Http(backend, defaultOptions);
+//                     },
+//                     deps: [MockBackend, BaseRequestOptions]
+//                 },
+//                 {
+//                     provide: Location, useFactory: () => {
+//                         return {
+//                             path: 'http://localhost/test'
+//                         };
+//                     }
+//                 },
+//                 ODataConfiguration,
+//                 ODataServiceFactory
+//             ],
+//             imports: [
+//                 HttpModule
+//             ]
+//         });
+//     });
+//     it('Expand(string) via injection', inject([ Http, ODataConfiguration ], (http: Http, config: ODataConfiguration) => {
+//         // Assign
+//         let test = new ODataOperationTest<IEmployee>('Employees', config, http);
+//         // Act
+//         test.Expand('x');
+//         // Assert
+//         assert.equal(test['_expand'], 'x');
+//     }));
+//     it('Expand(string)', () => {
+//         // Assign
+//         let test = new ODataOperationTest<IEmployee>('Employees', null, null);
+//         // Act
+//         test.Expand('x, y');
+//         // Assert
+//         assert.equal(test['_expand'], 'x, y');
+//     });
+//     it('Expand(string[])', () => {
+//         // Assign
+//         let test = new ODataOperationTest<IEmployee>('Employees', null, null);
+//         // Act
+//         test.Expand([ 'a', 'b' ]);
+//         // Assert
+//         assert.equal(test['_expand'], 'a,b');
+//     });
+//     it('Select(string)', () => {
+//         // Assign
+//         let test = new ODataOperationTest<IEmployee>('Employees', null, null);
+//         // Act
+//         test.Select('x,y,z');
+//         // Assert
+//         assert.equal(test['_select'], 'x,y,z');
+//     });
+//     it('Select(string[])', () => {
+//         // Assign
+//         let test = new ODataOperationTest<IEmployee>('Employees', null, null);
+//         // Act
+//         test.Select([ 'a', 'b' ]);
+//         // Assert
+//         assert.equal(test['_select'], 'a,b');
+//     });
+// });
 //# sourceMappingURL=odataoperation.spec.js.map

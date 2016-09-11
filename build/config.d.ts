@@ -13,8 +13,8 @@ export declare class ODataConfiguration {
     baseUrl: string;
     getEntityUri(entityKey: string, _typeName: string): string;
     handleError(err: any, caught: any): void;
-    requestOptions: RequestOptions;
-    postRequestOptions: RequestOptions;
+    readonly requestOptions: RequestOptions;
+    readonly postRequestOptions: RequestOptions;
     extractQueryResultData<T>(res: Response): T[];
     extractQueryResultDataWithCount<T>(res: Response): PagedResult<T>;
 }

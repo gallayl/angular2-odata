@@ -28,7 +28,7 @@ export abstract class ODataOperation<T> {
         return params;
     }
 
-    protected handleResponse(entity: Observable<Response>) {
+    protected handleResponse(entity: Observable<Response>): Observable<T> {
         return entity.map(this.extractData)
            .catch((err: any, caught: Observable<T>) => {
                if (this.config.handleError) this.config.handleError(err, caught);
@@ -36,7 +36,7 @@ export abstract class ODataOperation<T> {
            });
     }
 
-    protected getEntityUri(entityKey: string) {
+    protected getEntityUri(entityKey: string): string {
         return this.config.getEntityUri(entityKey, this._typeName);
     }
 

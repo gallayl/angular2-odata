@@ -42,12 +42,12 @@ export class ODataQuery<T> extends ODataOperation<T> {
     public Exec(): Observable<Array<T>> {
         let params = this.getQueryParams();
         let config = this.config;
-        return this.http.get(this.buildResourceURL(), {search: params})
-           .map(res => this.extractArrayData(res, config))
-           .catch((err: any, caught: Observable<Array<T>>) => {
-               if (this.config.handleError) this.config.handleError(err, caught);
-               return Observable.throw(err);
-           });
+        return this.http.get(this.buildResourceURL(), { search: params })
+            .map(res => this.extractArrayData(res, config))
+            .catch((err: any, caught: Observable<Array<T>>) => {
+                if (this.config.handleError) this.config.handleError(err, caught);
+                return Observable.throw(err);
+            });
     }
 
     public ExecWithCount(): Observable<PagedResult<T>> {
@@ -55,15 +55,15 @@ export class ODataQuery<T> extends ODataOperation<T> {
         params.set('$count', 'true'); // OData v4 only
         let config = this.config;
 
-        return this.http.get(this.buildResourceURL(), {search: params})
+        return this.http.get(this.buildResourceURL(), { search: params })
             .map(res => this.extractArrayDataWithCount(res, config))
             .catch((err: any, caught: Observable<PagedResult<T>>) => {
-               if (this.config.handleError) this.config.handleError(err, caught);
-               return Observable.throw(err);
-           });
+                if (this.config.handleError) this.config.handleError(err, caught);
+                return Observable.throw(err);
+            });
     }
 
-    private buildResourceURL(): string  {
+    private buildResourceURL(): string {
         return this.config.baseUrl + '/' + this._typeName + '/';
     }
 

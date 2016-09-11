@@ -1,17 +1,26 @@
+// import 'zone.js';
+// import 'zone.js/dist/long-stack-trace-zone';
+// import 'zone.js/dist/async-test';
+// import 'zone.js/dist/fake-async-test';
+// import 'zone.js/dist/sync-test';
+// import 'zone.js/dist/proxy';
+// import 'reflect-metadata';
 "use strict";
-require('zone.js');
-require('reflect-metadata');
+require('core-js/es7/reflect');
+require('zone.js/dist/zone');
+require('zone.js/dist/long-stack-trace-zone');
+Error.stackTraceLimit = 5;
 const chai_1 = require('chai');
 const common_1 = require('@angular/common');
 const testing_1 = require('@angular/core/testing');
-const testbedHelper_1 = require('./testbedHelper');
+// import { TestBedHelper } from './testbedHelper';
 const testing_2 = require('@angular/http/testing');
 const http_1 = require('@angular/http');
 const odataservicefactory_1 = require('../odataservicefactory');
 const config_1 = require('../config');
 describe('ODataService - ', () => {
     beforeEach(() => {
-        testbedHelper_1.TestBedHelper.Init().configureTestingModule({
+        testing_1.TestBed.configureTestingModule({
             providers: [
                 http_1.BaseRequestOptions,
                 testing_2.MockBackend,
