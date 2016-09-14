@@ -1,6 +1,6 @@
 "use strict";
 const http_1 = require('@angular/http');
-const rx_1 = require('rxjs/rx');
+const Rx_1 = require('rxjs/Rx');
 class ODataOperation {
     constructor(_typeName, config, http) {
         this._typeName = _typeName;
@@ -28,7 +28,7 @@ class ODataOperation {
             .catch((err, caught) => {
             if (this.config.handleError)
                 this.config.handleError(err, caught);
-            return rx_1.Observable.throw(err);
+            return Rx_1.Observable.throw(err);
         });
     }
     getEntityUri(entityKey) {

@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "noImplicitAny": false,
-    "rootDir": ".",
+    "rootDir": "./src",
     "outDir": "./build",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -15,7 +15,8 @@
     ".vscode",
     ".git",
     "build",
-    "node_modules"
+    "node_modules",
+    "src/test"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

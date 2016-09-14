@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { URLSearchParams, Http, Response } from '@angular/http';
-import { Observable, Operator, Subject } from 'rxjs/rx';
+import { Observable, Operator, Subject } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataOperation } from './operation';
 

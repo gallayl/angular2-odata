@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { URLSearchParams, Http, Response, RequestOptions } from '@angular/http';
-import { Observable, Operator } from 'rxjs/rx';
+import { Observable, Operator } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 
 export abstract class ODataOperation<T> {
@@ -60,7 +59,7 @@ export abstract class ODataOperation<T> {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
-        let body = res.json();
+        let body: any = res.json();
         let entity: T = body;
         return entity || null;
     }
