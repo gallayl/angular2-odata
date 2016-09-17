@@ -1,3 +1,4 @@
+/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 import { assert } from 'chai';
 import { Observable, Operator } from 'rxjs/Rx';
 import { Location } from '@angular/common';

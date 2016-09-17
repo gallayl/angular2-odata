@@ -46,7 +46,7 @@ module.exports = function(config) {
     },
 
     // Webpack please don't spam the console when running in karma!
-    webpackServer: { noInfo: true, stats: 'errors-only' },
+    webpackServer: { noInfo: false, stats: 'errors-only' },
 
     /*
      * test results reporter to use
@@ -66,7 +66,7 @@ module.exports = function(config) {
      * level of logging
      * possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
      */
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,

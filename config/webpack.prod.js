@@ -1,6 +1,5 @@
 const helpers = require('./helpers');
 const webpackConfig = require('webpack-config')
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = new webpackConfig.Config().extend('./config/webpack.common.js').merge({
 
@@ -10,8 +9,6 @@ module.exports = new webpackConfig.Config().extend('./config/webpack.common.js')
    * See: http://webpack.github.io/docs/configuration.html#debug
    */
   debug: false,
-
-  externals: [nodeExternals()],
 
   /**
    * Developer tool to enhance debugging

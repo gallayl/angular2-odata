@@ -1,11 +1,4 @@
 const helpers = require('./helpers');
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
-
-/**
- * Webpack Constants
- */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 /**
  * Webpack configuration
@@ -119,7 +112,7 @@ module.exports = function (options) {
          *
          * See: https://github.com/webpack/json-loader
          */
-        { test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')] }
+        { test: /\.json$/, loader: 'json-loader' }
       ],
 
       /**

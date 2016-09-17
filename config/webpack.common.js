@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const helpers = require('./helpers');
 var webpackConfig = require('webpack-config');
+const nodeExternals = require('webpack-node-externals');
 
 /*
  * Webpack configuration
@@ -16,6 +17,8 @@ module.exports = webpackConfig.Config().merge({
   entry: {
     'main': './src/index.ts'
   },
+  
+  externals: [nodeExternals()],
 
   /*
   * Options affecting the resolving of modules.
