@@ -1,0 +1,44 @@
+{
+	"name": "webpack",
+	"version": "0.1.0",
+	"command": "npm",
+	"isShellCommand": true,
+	"args": [
+	],
+	"echoCommand": true,
+	"tasks": [
+		{
+			"args": [
+				"run",
+				"build" 
+			],
+			"suppressTaskName": true,
+			"taskName": "build",
+			"isBuildCommand": true
+		},
+		{
+			"args": [
+				"test"
+			],
+			"suppressTaskName": true,
+			"taskName": "test",
+			"isBuildCommand": false
+		}
+	],
+	// The problem matcher will find build issues and adds it to the Problems log of VSCode.
+	// The editor will also highlight the issues in place.
+	"problemMatcher": {
+		"owner": "webpack",
+		"severity": "error",
+		"fileLocation": "relative", 
+		"pattern": [{
+			"regexp": "ERROR in (.*)",	
+			"file" : 1 
+		}, {
+			"regexp": "\\((\\d+),(\\d+)\\):(.*)",
+			"line":1,
+			"column": 2,
+			"message": 3
+		}]
+	}
+}

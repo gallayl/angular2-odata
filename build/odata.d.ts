@@ -1,5 +1,5 @@
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/rx';
+import { Observable } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataQuery } from './query';
 import { GetOperation } from './operation';
@@ -8,7 +8,7 @@ export declare class ODataService<T> {
     private http;
     private config;
     constructor(_typeName: string, http: Http, config: ODataConfiguration);
-    TypeName: string;
+    readonly TypeName: string;
     Get(key: string): GetOperation<T>;
     Post(entity: T): Observable<T>;
     CustomAction(key: string, actionName: string, postdata: any): Observable<T>;

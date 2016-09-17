@@ -1,5 +1,5 @@
 import { URLSearchParams, Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable, Operator } from 'rxjs/rx';
+import { Observable, Operator } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataQuery } from './query';
 import { GetOperation } from './operation';
@@ -44,11 +44,11 @@ export class ODataService<T> {
         return new ODataQuery<T>(this.TypeName, this.config, this.http);
     }
 
-    protected getEntityUri(entityKey: string) {
+    protected getEntityUri(entityKey: string): string {
         return this.config.getEntityUri(entityKey, this._typeName);
     }
 
-    protected handleResponse(entity: Observable<Response>) {
+    protected handleResponse(entity: Observable<Response>): Observable<T> {
         return entity.map(this.extractData)
            .catch((err: any, caught: Observable<T>) => {
                if (this.config.handleError) this.config.handleError(err, caught);
@@ -60,7 +60,7 @@ export class ODataService<T> {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
-        let body = res.json();
+        let body: any = res.json();
         let entity: T = body;
         return entity || null;
     }

@@ -36,3 +36,7 @@ typings
 
 # Optional REPL history
 .node_repl_history
+
+.vscode/chrome
+
+build-test
