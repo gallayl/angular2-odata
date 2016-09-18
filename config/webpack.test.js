@@ -1,3 +1,4 @@
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const helpers = require('./helpers');
 
 /**
@@ -96,14 +97,6 @@ module.exports = function (options) {
         {
           test: /\.ts$/,
           loader: 'awesome-typescript-loader',
-          query: {
-            compilerOptions: {
-
-              // Remove TypeScript helpers to be injected
-              // below by DefinePlugin
-              removeComments: true
-            }
-          },
           exclude: [/\.e2e\.ts$/]
         },
 
@@ -145,6 +138,10 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+      new ContextReplacementPlugin(
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        __dirname
+      ),
     ],
 
     /**
