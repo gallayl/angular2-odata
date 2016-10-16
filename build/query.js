@@ -1,5 +1,5 @@
 "use strict";
-const Rx_1 = require('rxjs/Rx');
+const rx_1 = require('rxjs/Rx');
 const operation_1 = require('./operation');
 class PagedResult {
 }
