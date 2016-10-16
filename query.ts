@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams, Http, Response } from '@angular/http';
-import { Observable, Operator, Subject } from 'rxjs/rx';
+import { Observable, Operator, Subject } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataOperation } from './operation';
 
@@ -64,7 +64,7 @@ export class ODataQuery<T> extends ODataOperation<T> {
     }
 
     private buildResourceURL(): string  {
-        return this.config.baseUrl + '/' + this._typeName + '/';
+        return this.config.baseUrl + '/' + this._typeName;
     }
 
     private getQueryParams(): URLSearchParams {
