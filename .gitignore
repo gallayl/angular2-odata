@@ -40,3 +40,4 @@ typings
 .vscode/chrome
 
 build-test
+/.vscode/symbols.json
