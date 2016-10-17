@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "noImplicitAny": false,
     "rootDir": "./src",
-    "outDir": "./build",
+    "outDir": "./build-test",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -15,8 +15,7 @@
     ".vscode",
     ".git",
     "build",
-    "node_modules",
-    "src/test"
+    "node_modules"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

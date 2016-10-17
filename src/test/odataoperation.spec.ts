@@ -1,13 +1,11 @@
-require('zone.js');
-import 'reflect-metadata';
+/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 import { assert } from 'chai';
-import { Observable, Operator } from 'rxjs/rx';
+import { Observable, Operator } from 'rxjs/Rx';
 import { Location } from '@angular/common';
-import { inject, addProviders, TestComponentBuilder, TestBed } from '@angular/core/testing';
-import { TestBedHelper } from './testbedHelper';
+import { inject, TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions, Http, ConnectionBackend, HttpModule } from '@angular/http';
-import { IEmployee } from './employee';
+import { IEmployee } from './helpers/employee';
 import { ODataOperation } from '../operation';
 import { ODataServiceFactory } from '../odataservicefactory';
 import { ODataConfiguration } from '../config';
@@ -18,11 +16,9 @@ export class ODataOperationTest<IEmployee> extends ODataOperation<IEmployee> {
     }
 }
 
-describe('ODataOperation - ', () => {
-    // before(() => TestBedHelper.Init());
-
+describe('ODataOperation', () => {
     beforeEach(() => {
-        TestBedHelper.Init().configureTestingModule({
+        TestBed.configureTestingModule({
             providers: [
                 BaseRequestOptions,
                 MockBackend,
@@ -32,13 +28,13 @@ describe('ODataOperation - ', () => {
                     },
                     deps: [MockBackend, BaseRequestOptions]
                 },
-                {
-                    provide: Location, useFactory: () => {
-                        return {
-                            path: 'http://localhost/test'
-                        };
-                    }
-                },
+                // {
+                //     provide: Location, useFactory: () => {
+                //         return {
+                //             path: 'http://localhost/test'
+                //         };
+                //     }
+                // },
                 ODataConfiguration,
                 ODataServiceFactory
             ],
