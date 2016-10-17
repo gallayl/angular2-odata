@@ -1,5 +1,5 @@
 import { URLSearchParams, Http, Response, RequestOptions } from '@angular/http';
-import { Observable, Operator } from 'rxjs/Rx';
+import { Observable, Operator } from 'rxjs/rx';
 import { ODataConfiguration } from './config';
 
 export abstract class ODataOperation<T> {
