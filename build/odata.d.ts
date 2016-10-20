@@ -12,6 +12,7 @@ export declare class ODataService<T> {
     Get(key: string): GetOperation<T>;
     Post(entity: T): Observable<T>;
     CustomAction(key: string, actionName: string, postdata: any): Observable<T>;
+    CustomFunction(key: string, actionName: string): Observable<T>;
     Patch(entity: any, key: string): Observable<Response>;
     Put(entity: T, key: string): Observable<T>;
     Delete(key: string): Observable<Response>;

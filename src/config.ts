@@ -17,13 +17,9 @@ export class ODataConfiguration {
     public keys: KeyConfigs = new KeyConfigs();
     public baseUrl: string = 'http://localhost/odata';
 
-    // constructor(location?: Location) {
-    //     this.baseUrl = location.path + '/odata';
-    // }
 
     public getEntityUri(entityKey: string, _typeName: string) {
-        // ToDo: Fix string based keys
-        if (!parseInt(entityKey, 10)) {
+        if (!/^[0-9]*$/.test(entityKey)) {
             return this.baseUrl + '/' + _typeName + "('" + entityKey + "')";
         }
 
