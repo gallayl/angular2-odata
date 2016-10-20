@@ -20,10 +20,10 @@ class ODataService {
     }
     CustomAction(key, actionName, postdata) {
         let body = JSON.stringify(postdata);
-        return this.handleResponse(this.http.post(this.getEntityUri(key) + '/' + actionName, body, this.config.requestOptions));
+        return this.http.post(this.getEntityUri(key) + '/' + actionName, body, this.config.requestOptions).map(resp => resp.json());
     }
     CustomFunction(key, actionName) {
-        return this.handleResponse(this.http.get(this.getEntityUri(key) + '/' + actionName, this.config.requestOptions));
+        return this.http.get(this.getEntityUri(key) + '/' + actionName, this.config.requestOptions).map(resp => resp.json());
     }
     Patch(entity, key) {
         let body = JSON.stringify(entity);
