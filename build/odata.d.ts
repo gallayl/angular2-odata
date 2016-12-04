@@ -1,5 +1,5 @@
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/rx';
+import { Observable } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataQuery } from './query';
 import { GetOperation } from './operation';
