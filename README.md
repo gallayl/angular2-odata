@@ -2,7 +2,7 @@
 The goal is to create a fluent API for querying, creating, updating and deleting OData resources in Angular2.
 OData service for Angular.
 
-If you are using OData with Angular>2 please check also my other related project, https://github.com/gallayl/FuryTech.OdataTypescriptServiceGenerator
+If you are using OData with Angular>2 please check also my other related project, [FuryTech.OdataTypescriptServiceGenerator](https://github.com/gallayl/FuryTech.OdataTypescriptServiceGenerator)
 
 ##Usage example:
 Get the package from NPM:
