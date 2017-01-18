@@ -1,5 +1,5 @@
 "use strict";
-const rx_1 = require('rxjs/rx');
+const Rx_1 = require('rxjs/Rx');
 const operation_1 = require('./operation');
 class PagedResult {
 }
@@ -29,24 +29,24 @@ class ODataQuery extends operation_1.ODataOperation {
     Exec() {
         let params = this.getQueryParams();
         let config = this.config;
-        return this.http.get(this.buildResourceURL(), { search: params })
+        return this.http.get(this.buildResourceURL(), { search: params, headers: this.config.requestOptions.headers })
             .map(res => this.extractArrayData(res, config))
             .catch((err, caught) => {
             if (this.config.handleError)
                 this.config.handleError(err, caught);
-            return rx_1.Observable.throw(err);
+            return Rx_1.Observable.throw(err);
         });
     }
     ExecWithCount() {
         let params = this.getQueryParams();
         params.set('$count', 'true'); // OData v4 only
         let config = this.config;
-        return this.http.get(this.buildResourceURL(), { search: params })
+        return this.http.get(this.buildResourceURL(), { search: params, headers: this.config.requestOptions.headers })
             .map(res => this.extractArrayDataWithCount(res, config))
             .catch((err, caught) => {
             if (this.config.handleError)
                 this.config.handleError(err, caught);
-            return rx_1.Observable.throw(err);
+            return Rx_1.Observable.throw(err);
         });
     }
     buildResourceURL() {

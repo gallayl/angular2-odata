@@ -1,5 +1,5 @@
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/rx';
+import { Observable } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataOperation } from './operation';
 export declare class PagedResult<T> {

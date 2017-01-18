@@ -1,5 +1,5 @@
 import { URLSearchParams, Http, Response } from '@angular/http';
-import { Observable, Operator, Subject } from 'rxjs/rx';
+import { Observable, Operator, Subject } from 'rxjs/Rx';
 import { ODataConfiguration } from './config';
 import { ODataOperation } from './operation';
 
@@ -41,7 +41,7 @@ export class ODataQuery<T> extends ODataOperation<T> {
     public Exec(): Observable<Array<T>> {
         let params = this.getQueryParams();
         let config = this.config;
-        return this.http.get(this.buildResourceURL(), { search: params })
+        return this.http.get(this.buildResourceURL(), { search: params, headers: this.config.requestOptions.headers })
             .map(res => this.extractArrayData(res, config))
             .catch((err: any, caught: Observable<Array<T>>) => {
                 if (this.config.handleError) this.config.handleError(err, caught);
@@ -54,7 +54,7 @@ export class ODataQuery<T> extends ODataOperation<T> {
         params.set('$count', 'true'); // OData v4 only
         let config = this.config;
 
-        return this.http.get(this.buildResourceURL(), { search: params })
+        return this.http.get(this.buildResourceURL(), { search: params, headers: this.config.requestOptions.headers })
             .map(res => this.extractArrayDataWithCount(res, config))
             .catch((err: any, caught: Observable<PagedResult<T>>) => {
                 if (this.config.handleError) this.config.handleError(err, caught);
